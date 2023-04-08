@@ -41,7 +41,7 @@ useEffect(()=>{
    <section className={`${styles.paddingX}  `} >
     <div className={`${styles.boxWidth}`}>
     <div className=' flex flex-row justify-end  '>
-      <Select  options={options}  onChange={handleChange} className={`shadow-xl focus:outline-none max-w-[200px]`}/>
+      <Select  options={options}  onChange={handleChange} className={`shadow-xl focus:outline-none max-w-[201px]`}/>
       </div>
    </div>
     </section>
