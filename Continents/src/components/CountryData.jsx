@@ -11,7 +11,7 @@ export default function Country() {
   console.log(allCountries);
   const { id } = useParams();
   const country = allCountries.find(({ name }) => name.common === id);
-
+  //A function that gets the currency object, then map on only the values
   function getCurrency() {
     const currency = Object.values(country.currencies).map(
       (currency) => currency.name
@@ -19,6 +19,7 @@ export default function Country() {
     console.log(currency);
     setCurrency(currency);
   }
+  //A function that gets the language object, then map on only the keys and values
   const language = Object.entries(country.languages);
   console.log(language);
 
@@ -61,7 +62,7 @@ export default function Country() {
           </h1>
         </div>
         {/* ---country info---- */}
-        <div className="flex flex-col justify-center  gap-y-2">
+        <div className="flex flex-col justify-start md:justify-center items-start md:  gap-y-2">
           <h3>
             <span className="text-md font-semibold"> Capital:{""}</span>{" "}
             {country.capital[0]}

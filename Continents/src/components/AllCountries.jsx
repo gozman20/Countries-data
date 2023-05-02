@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import styles from "./styles";
 import { useDispatch, useSelector } from "react-redux";
-import { updateAllCountries, setSearch } from "../features/countrySlice";
+import {
+  updateAllCountries,
+  setSearch,
+  setCountry,
+} from "../features/countrySlice";
 import { options } from "../selectOptions";
 
 export default function AllCountries() {
@@ -11,6 +15,18 @@ export default function AllCountries() {
 
   const handleChange = (e) => {
     dispatch(setSearch(e.target.value));
+  };
+
+  //function that takes selected value, filters out the selected continent and dispatches it
+  const handleSelect = (e) => {
+    const continent = allCountries.filter((country) => {
+      if (e.target.value === "All") {
+        return allCountries;
+      } else {
+        return country.continents[0] === e.target.value;
+      }
+    });
+    dispatch(setCountry(continent));
   };
 
   console.log(state);
@@ -23,42 +39,51 @@ export default function AllCountries() {
     console.log(response);
 
     dispatch(updateAllCountries(response));
+    dispatch(setCountry(response));
     setState(response);
   }
 
   useEffect(() => {
     name();
+    dispatch(setSearch(""));
   }, []);
 
   return (
-    <section className={`${styles.paddingX}  `}>
-      <div className={`${styles.boxWidth}`}>
-        <div className=" flex flex-row justify-between items-center  ">
+    <section className={`${styles.paddingX} relative `}>
+      <div className={`${styles.boxWidth} `}>
+        <di className=" flex flex-col md:flex-row justify-between items-center gap-y-3 ">
           {/* <Search className="shadow-lg" /> */}
-          <select onChange={handleChange} className="shadow-xl h-[30px]">
-            <option defaultValue disabled>
-              Select Continent
-            </option>
-            <option value="europe">Europe</option>
-            <option value="africa">Africa</option>
-            <option value="north america">North America</option>
-            <option value="south america">South America</option>
-            <option value="oceania">Oceania</option>
-            <option value="asia">Asia</option>
-          </select>
+          <div>
+            <h3>Filter by Continent</h3>
+            <select
+              onChange={handleSelect}
+              className="shadow-xl h-[30px] outline-none border border-gray-300"
+            >
+              <option defaultValue disabled>
+                Select Continent
+              </option>
+              <option value="All">All continents</option>
+              <option value="Europe">Europe</option>
+              <option value="Africa">Africa</option>
+              <option value="North America">North America</option>
+              <option value="South America">South America</option>
+              <option value="Oceania">Oceania</option>
+              <option value="Asia">Asia</option>
+            </select>
+          </div>
 
-          <form onChange={handleChange}>
+          <form onChange={handleChange} className="text-center">
             {" "}
             <h1 className={`${mode === "light" ? "" : "text-white"} `}>
               Search by country
             </h1>
             <input
               type="Search"
-              className="shadow-xl h-[30px]"
+              className="shadow-xl h-[30px] outline-none border border-gray-300 rounded-lg"
               placeholder="Search.."
             />
           </form>
-        </div>
+        </di>
       </div>
     </section>
   );
