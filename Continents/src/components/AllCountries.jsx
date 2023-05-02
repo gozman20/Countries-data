@@ -12,6 +12,7 @@ export default function AllCountries() {
   const { search, mode, allCountries } = useSelector((store) => store);
   const dispatch = useDispatch();
   const [state, setState] = useState(allCountries);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     dispatch(setSearch(e.target.value));
@@ -19,6 +20,7 @@ export default function AllCountries() {
 
   //function that takes selected value, filters out the selected continent and dispatches it
   const handleSelect = (e) => {
+    setLoading(true);
     const continent = allCountries.filter((country) => {
       if (e.target.value === "All") {
         return allCountries;
@@ -26,7 +28,11 @@ export default function AllCountries() {
         return country.continents[0] === e.target.value;
       }
     });
-    dispatch(setCountry(continent));
+
+    setTimeout(() => {
+      dispatch(setCountry(continent));
+      setLoading(false);
+    }, 3000);
   };
 
   console.log(state);
@@ -47,6 +53,7 @@ export default function AllCountries() {
     name();
     dispatch(setSearch(""));
   }, []);
+  if (loading) return "Loading...";
 
   return (
     <section className={`${styles.paddingX} relative `}>

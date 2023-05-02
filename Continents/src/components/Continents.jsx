@@ -5,7 +5,7 @@ import styles from "./styles";
 import { Link } from "react-router-dom";
 
 export default function Continents() {
-  const { allCountries, country, mode, search } = useSelector((store) => store);
+  const {  country, mode, search } = useSelector((store) => store);
 
   return (
     <section
