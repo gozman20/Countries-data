@@ -5,14 +5,13 @@ import {
   updateAllCountries,
   setSearch,
   setCountry,
+  setLoading,
 } from "../features/countrySlice";
-import { options } from "../selectOptions";
 
 export default function AllCountries() {
   const { search, mode, allCountries } = useSelector((store) => store);
   const dispatch = useDispatch();
   const [state, setState] = useState(allCountries);
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     dispatch(setSearch(e.target.value));
@@ -20,7 +19,7 @@ export default function AllCountries() {
 
   //function that takes selected value, filters out the selected continent and dispatches it
   const handleSelect = (e) => {
-    setLoading(true);
+    dispatch(setLoading());
     const continent = allCountries.filter((country) => {
       if (e.target.value === "All") {
         return allCountries;
@@ -30,8 +29,8 @@ export default function AllCountries() {
     });
 
     setTimeout(() => {
+      dispatch(setLoading());
       dispatch(setCountry(continent));
-      setLoading(false);
     }, 3000);
   };
 
@@ -53,7 +52,6 @@ export default function AllCountries() {
     name();
     dispatch(setSearch(""));
   }, []);
-  if (loading) return "Loading...";
 
   return (
     <section className={`${styles.paddingX} relative `}>

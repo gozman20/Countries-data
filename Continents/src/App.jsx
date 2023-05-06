@@ -12,8 +12,9 @@ function App() {
   return (
     <div className={`${mode === "light" ? "" : "bg-dark h-screen"} `}>
       <Navbar />
-      <AllCountries />
+
       <BrowserRouter>
+        <AllCountries />
         <Routes>
           <Route path="/" element={<Continents />} />
           <Route path="/country/:id" element={<Country />} />

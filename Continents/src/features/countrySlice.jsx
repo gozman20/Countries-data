@@ -5,6 +5,7 @@ const initialState = {
   country: [],
   mode: "light",
   search: "",
+  loading: false,
 };
 
 const countrySlice = createSlice({
@@ -24,9 +25,17 @@ const countrySlice = createSlice({
     setCountry: (state, action) => {
       state.country = action.payload;
     },
+    setLoading: (state) => {
+      state.loading = !state.loading;
+    },
   },
 });
 
-export const { updateAllCountries, setCountry, setMode, setSearch } =
-  countrySlice.actions;
+export const {
+  updateAllCountries,
+  setCountry,
+  setMode,
+  setSearch,
+  setLoading,
+} = countrySlice.actions;
 export default countrySlice.reducer;
