@@ -58,7 +58,7 @@ export default function Continents() {
                             <span className="text-md font-semibold">
                               Capital:
                             </span>{" "}
-                            {all.capital ? all.capital[0] : ""}
+                            {all.capital?.[0]}
                           </h3>
                           <h3>
                             <span className="text-md font-semibold">

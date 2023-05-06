@@ -56,7 +56,7 @@ export default function AllCountries() {
   return (
     <section className={`${styles.paddingX} relative `}>
       <div className={`${styles.boxWidth} `}>
-        <di className=" flex flex-col md:flex-row justify-between items-center gap-y-3 ">
+        <div className=" flex flex-col md:flex-row justify-between items-center gap-y-3 ">
           {/* <Search className="shadow-lg" /> */}
           <div>
             <h3>Filter by Continent</h3>
@@ -88,7 +88,7 @@ export default function AllCountries() {
               placeholder="Search.."
             />
           </form>
-        </di>
+        </div>
       </div>
     </section>
   );
