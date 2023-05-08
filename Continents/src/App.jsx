@@ -1,23 +1,26 @@
 import { useState } from "react";
 import AllCountries from "./components/AllCountries";
 import Navbar from "./components/Navbar";
-import Continents from "./components/Continents";
-import Country from "./components/CountryData";
-import { useSelector } from "react-redux";
+import CountryDetails from "./components/CountryDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function App() {
   const { mode } = useSelector((store) => store);
-
   return (
-    <div className={`${mode === "light" ? "" : "bg-dark h-screen"} `}>
-      <Navbar />
+    <div className={`${mode === "light" ? "" : "bg-dark "} `}>
+      <div
+        className={`mb-4 ${
+          mode === "light" ? "" : "bg-dark border border-b-white/100"
+        } `}
+      >
+        <Navbar />
+      </div>
 
       <BrowserRouter>
-        <AllCountries />
         <Routes>
-          <Route path="/" element={<Continents />} />
-          <Route path="/country/:id" element={<Country />} />
+          <Route path="/" element={<AllCountries />} />
+          <Route path="/country/:id" element={<CountryDetails />} />
         </Routes>
       </BrowserRouter>
     </div>

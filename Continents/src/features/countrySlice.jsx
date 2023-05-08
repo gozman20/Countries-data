@@ -1,41 +1,23 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  allCountries: [],
-  country: [],
+  allCountries: "",
   mode: "light",
-  search: "",
-  loading: false,
 };
-
 const countrySlice = createSlice({
   name: "country",
   initialState,
   reducers: {
-    updateAllCountries: (state, action) => {
-      console.log(action);
+    setAllCountries: (state, action) => {
       state.allCountries = action.payload;
     },
     setMode: (state) => {
       state.mode = state.mode === "light" ? "dark" : "light";
     },
-    setSearch: (state, action) => {
-      state.search = action.payload;
-    },
-    setCountry: (state, action) => {
-      state.country = action.payload;
-    },
-    setLoading: (state) => {
-      state.loading = !state.loading;
-    },
   },
 });
 
-export const {
-  updateAllCountries,
-  setCountry,
-  setMode,
-  setSearch,
-  setLoading,
-} = countrySlice.actions;
+// Extract and export each action creator by name
+export const { setAllCountries, setMode } = countrySlice.actions;
+// Export the reducer, either as a default or named export
 export default countrySlice.reducer;

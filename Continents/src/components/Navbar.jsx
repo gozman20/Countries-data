@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./styles";
 import { CiDark, CiLight } from "react-icons/ci";
-import { setMode } from "../features/countrySlice";
+import { setMode } from "../features/CountrySlice";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Navbar() {
@@ -13,7 +13,11 @@ export default function Navbar() {
     <div className={`${styles.paddingX} pt-6 shadow-lg  `}>
       <nav>
         <div className="flex flex-row justify-between items-center">
-          <h1 className={`text-[40px] ${mode === "light" ? "" : "text-white"}`}>
+          <h1
+            className={`md:text-[40px] text-[30px] ${
+              mode === "light" ? "" : "text-white"
+            }`}
+          >
             Countries of the world
           </h1>
 
