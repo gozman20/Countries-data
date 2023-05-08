@@ -26,7 +26,7 @@ export default function CountryDetails() {
     return result;
   }
   return (
-    <>
+    <div className="h-screen">
       <Link
         to=".."
         className={`py-2 px-3 ml-4 bg-black text-white ${
@@ -84,6 +84,6 @@ export default function CountryDetails() {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
