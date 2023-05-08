@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 function App() {
   const { mode } = useSelector((store) => store);
   return (
-    <div className={`${mode === "light" ? "" : "bg-dark "} `}>
+    <div className={`${mode === "light" ? "" : "bg-dark h-screen "} `}>
       <div
         className={`mb-4 ${
           mode === "light" ? "" : "bg-dark border border-b-white/100"

@@ -35,10 +35,13 @@ export default function CountryDetails() {
       >
         Back to previous page
       </Link>
-      <div className="grid place-items-center h-screen">
+      <div className="grid place-items-center ">
         <div>
+          <div className="mb-2 font-bold text-[30px]">
+            {selectedCountry.name.common}
+          </div>
           <div
-            className={`w-[300px] css-shadow  ${
+            className={`max-w-[350px] css-shadow  ${
               mode === "light" ? "" : "border border-white"
             }`}
           >
@@ -51,9 +54,6 @@ export default function CountryDetails() {
             </div>
             {/* country details */}
             <div className={` p-2 ${mode === "light" ? "" : "text-white"}`}>
-              <div className="mb-2 font-bold text-[30px]">
-                {selectedCountry.name.common}
-              </div>
               <div>
                 <span className="font-bold">Capital: </span>
                 {selectedCountry.capital?.[0]}
