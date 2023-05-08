@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useSearchParams, Link } from "react-router-dom";
+import { useSearchParams, Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { setAllCountries } from "../features/CountrySlice";
+import { setAllCountries } from "../features/countrySlice";
 import styles from "./styles";
 
 export default function AllCountries() {
@@ -21,8 +21,7 @@ export default function AllCountries() {
   const displayedCountries = typeFilter
     ? AllCountriesData.filter((country) => country.continents[0] === typeFilter)
     : AllCountriesData;
-  console.log(typeFilter);
-  console.log(displayedCountries);
+  // console.log(typeFilter);
 
   //onSearch
   function onSearch(e) {
@@ -31,7 +30,6 @@ export default function AllCountries() {
 
   //handleChange
   function handleChange(e) {
-    console.log(e.target.value);
     if (e.target.value !== "") {
       setSearchParams({ continents: e.target.value });
     } else {
@@ -51,6 +49,7 @@ export default function AllCountries() {
           <select
             className="w-full h-full outline-none"
             onChange={handleChange}
+            value="All Countries"
           >
             <option value="Europe">Europe</option>
             <option value="Asia">Asia</option>
@@ -58,9 +57,7 @@ export default function AllCountries() {
             <option value="South America">South America</option>
             <option value="North America">North America</option>
             <option value="Oceania">Oceania</option>
-            <option value="" selected>
-              All Countries
-            </option>
+            <option value="">All Countries</option>
           </select>
         </div>
         <div className="w-[200px] h-[30px]">

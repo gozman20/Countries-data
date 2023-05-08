@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
+import ScrollToTop from "./ScrollToTop";
 
 export default function CountryDetails() {
   const { allCountries, mode } = useSelector((store) => store);
   const { id } = useParams();
-  console.log(id);
 
   const selectedCountry = allCountries.find(
     (country) => country.name.common === id
@@ -27,6 +27,7 @@ export default function CountryDetails() {
   }
   return (
     <div className="h-screen">
+      <ScrollToTop />
       <Link
         to=".."
         className={`py-2 px-3 ml-4 bg-black text-white ${
@@ -41,7 +42,7 @@ export default function CountryDetails() {
             {selectedCountry.name.common}
           </div>
           <div
-            className={`max-w-[350px] css-shadow  ${
+            className={`max-w-[370px] css-shadow  ${
               mode === "light" ? "" : "border border-white"
             }`}
           >

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./styles";
 import { CiDark, CiLight } from "react-icons/ci";
-import { setMode } from "../features/CountrySlice";
+import { setMode } from "../features/countrySlice";
 import { useSelector, useDispatch } from "react-redux";
 
 export default function Navbar() {
