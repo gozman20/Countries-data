@@ -3,8 +3,10 @@ import { useSearchParams, Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { setAllCountries } from "../features/countrySlice";
 import styles from "./styles";
+import DropDown from "./DropDown";
 
 export default function AllCountries() {
+  const [selected, setSelected] = useState("Select a continent");
   const { mode } = useSelector((store) => store);
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
@@ -28,15 +30,6 @@ export default function AllCountries() {
     setSearch(e.target.value);
   }
 
-  //handleChange
-  function handleChange(e) {
-    if (e.target.value !== "") {
-      setSearchParams({ continents: e.target.value });
-    } else {
-      setSearchParams({});
-    }
-  }
-
   //useEffect
   useEffect(() => {
     getAllCountries();
@@ -45,21 +38,12 @@ export default function AllCountries() {
   return (
     <div className={`${styles.paddingX}`}>
       <div className="flex flex-col md:flex-row justify-between items-center mb-10 px-[20px] gap-y-[6px] ">
-        <div className="w-[200px] h-[30px] ">
-          <select
-            className="w-full h-full outline-none"
-            onChange={handleChange}
-            value="All Countries"
-          >
-            <option value="Europe">Europe</option>
-            <option value="Asia">Asia</option>
-            <option value="Africa">Africa</option>
-            <option value="South America">South America</option>
-            <option value="North America">North America</option>
-            <option value="Oceania">Oceania</option>
-            <option value="">All Countries</option>
-          </select>
-        </div>
+        {/* <div className="w-[200px] h-[30px] "></div> */}
+        <DropDown
+          selected={selected}
+          setSelected={setSelected}
+          setSearchParams={setSearchParams}
+        />
         <div className="w-[200px] h-[30px]">
           <input
             type="search"

@@ -12,3 +12,31 @@
   -webkit-box-shadow: -2px 6px 13px -2px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: -2px 6px 13px -2px rgba(0, 0, 0, 0.75);
 }
+.dropdown {
+  width: 200px;
+  position: relative;
+  user-select: none;
+  background: red;
+}
+.dropdown .dropdown-btn {
+  padding: 10px;
+  background: #f4f4f4;
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
+}
+.dropdown .dropdown-content {
+  position: absolute;
+  top: 110%;
+  padding: 10px;
+  background: #f4f4f4;
+  width: 100%;
+}
+.dropdown .dropdown-content .dropdown-item {
+  cursor: pointer;
+  padding: 10px;
+  transition: all 0.2s;
+}
+.dropdown .dropdown-content .dropdown-item:hover {
+  background-color: #fff;
+}
