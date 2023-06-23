@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 import CountryDetails from "./components/CountryDetails";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
-
+import "leaflet/dist/leaflet.css";
 function App() {
   const { mode } = useSelector((store) => store);
   return (

@@ -2,6 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import ScrollToTop from "./ScrollToTop";
+import Mapleaflet from "./Mapleaflet";
 
 export default function CountryDetails() {
   const { allCountries, mode } = useSelector((store) => store);
@@ -26,8 +27,7 @@ export default function CountryDetails() {
     return result;
   }
   return (
-    <div className="h-screen">
-      <ScrollToTop />
+    <>
       <Link
         to=".."
         className={`py-2 px-3 ml-4 bg-black text-white ${
@@ -36,55 +36,62 @@ export default function CountryDetails() {
       >
         Back to previous page
       </Link>
-      <div className="grid place-items-center ">
-        <div>
-          <div className="mb-2 font-bold text-[30px]">
-            {selectedCountry.name.common}
-          </div>
-          <div
-            className={`max-w-[370px] css-shadow  ${
-              mode === "light" ? "" : "border border-white"
-            }`}
-          >
-            {" "}
-            <div className="">
-              <img
-                className="h-full w-full object-cover"
-                src={selectedCountry.flags.png}
-              />
+      <div className="my-5">
+        <Mapleaflet prop={selectedCountry} />
+      </div>
+      <div className="h-screen">
+        <ScrollToTop />
+
+        <div className="grid place-items-center ">
+          <div>
+            <div className="mb-2 font-bold text-[30px]">
+              {selectedCountry.name.common}
             </div>
-            {/* country details */}
-            <div className={` p-2 ${mode === "light" ? "" : "text-white"}`}>
-              <div>
-                <span className="font-bold">Capital: </span>
-                {selectedCountry.capital?.[0]}
+            <div
+              className={` css-shadow  ${
+                mode === "light" ? "" : "border border-white"
+              }`}
+            >
+              {" "}
+              <div className="">
+                <img
+                  className="h-full w-full object-cover"
+                  src={selectedCountry.flags.png}
+                />
               </div>
-              <div>
-                <span className="font-bold">Population: </span>
-                {selectedCountry.population}
-              </div>
-              <div>
-                <span className="font-bold">Region: </span>
-                {selectedCountry.region}
-              </div>
-              {selectedCountry.borders && (
+              {/* country details */}
+              <div className={` p-2 ${mode === "light" ? "" : "text-white"}`}>
                 <div>
-                  <span className="font-bold">Border: </span>
-                  {selectedCountry.borders.join(", ")}
+                  <span className="font-bold">Capital: </span>
+                  {selectedCountry.capital?.[0]}
                 </div>
-              )}
-              <div>
-                <span className="font-bold">Currency: </span>
-                {currency()}
-              </div>
-              <div>
-                <span className="font-bold">Language: </span>
-                {language()}
+                <div>
+                  <span className="font-bold">Population: </span>
+                  {selectedCountry.population}
+                </div>
+                <div>
+                  <span className="font-bold">Region: </span>
+                  {selectedCountry.region}
+                </div>
+                {selectedCountry.borders && (
+                  <div>
+                    <span className="font-bold">Border: </span>
+                    {selectedCountry.borders.join(", ")}
+                  </div>
+                )}
+                <div>
+                  <span className="font-bold">Currency: </span>
+                  {currency()}
+                </div>
+                <div>
+                  <span className="font-bold">Language: </span>
+                  {language()}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
